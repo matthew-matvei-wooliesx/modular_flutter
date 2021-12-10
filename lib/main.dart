@@ -1,5 +1,6 @@
 import 'package:domain/calculator.dart';
 import 'package:flutter/material.dart';
+import 'package:modular_flutter/application/incrementer.dart';
 
 void main() => runApp(const MyApp());
 
@@ -29,13 +30,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final Calculator _calculator;
+  final Incrementer _incrementer;
 
-  _MyHomePageState() : _calculator = Calculator();
+  _MyHomePageState() : _incrementer = Incrementer.poorMansProvider();
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
+    final c = Calculator();
+    final incrementedValue = await _incrementer.increment(_counter);
     setState(() {
-      _counter = _calculator.addOne(_counter);
+      _counter = incrementedValue;
     });
   }
 
