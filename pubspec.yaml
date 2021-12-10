@@ -30,6 +30,8 @@ dependencies:
 
   domain:
     path: ./domain
+  application:
+    path: ./application
 
 dev_dependencies:
   flutter_test:
