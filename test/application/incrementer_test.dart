@@ -1,61 +1,89 @@
-import 'package:domain/calculator.dart';
+import 'package:domain/changeable_value.dart';
+import 'package:domain/changeable_value_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:modular_flutter/application/incrementer.dart';
 
+import 'incrementer_test.mocks.dart';
+
+@GenerateMocks([ChangeableValueRepository])
 void main() {
   group("Incrementer", () {
-    late int value;
-    late int incrementedValue;
+    late MockChangeableValueRepository repository;
+    late Incrementer incrementer;
+    final staticValueId = "SingletonValue";
 
-    group("given a zero value", () {
+    setUp(() {
+      repository = MockChangeableValueRepository();
+      incrementer = Incrementer(repository: repository);
+    });
+
+    group("given no current value", () {
       setUp(() {
-        value = 0;
+        when(repository.fetch(staticValueId)).thenAnswer((_) async => null);
+      });
+
+      group("when getting the current value", () {
+        late int? currentValue;
+
+        setUp(() async {
+          currentValue = await incrementer.getCurrent();
+        });
+
+        test("returns null", () {
+          expect(currentValue, isNull);
+        });
       });
 
       group("when incrementing the value", () {
+        late int incrementedValue;
+
         setUp(() async {
-          final incrementer = Incrementer(calculator: Calculator());
-          incrementedValue = await incrementer.increment(value);
+          incrementedValue = await incrementer.increment();
         });
 
-        test("increments the value", () {
-          expect(incrementedValue, value + 1);
+        test("returns 1", () {
+          expect(incrementedValue, 1);
         });
       });
     });
 
-    group("given a positive value", () {
+    group("given a current value exists", () {
+      late ChangeableValue currentValue;
+
       setUp(() {
-        value = 1;
+        currentValue = ChangeableValue(staticValueId, 10);
+
+        when(repository.fetch(staticValueId))
+            .thenAnswer((_) async => currentValue);
+      });
+
+      group("when getting the current value", () {
+        late int? currentValue;
+        late int expectedValue;
+
+        setUp(() async {
+          expectedValue = 10;
+          currentValue = await incrementer.getCurrent();
+        });
+
+        test("returns the value", () {
+          expect(currentValue, expectedValue);
+        });
       });
 
       group("when incrementing the value", () {
-        setUp(() async {
-          final incrementer = Incrementer(calculator: Calculator());
-          incrementedValue = await incrementer.increment(value);
-        });
-
-        test("increments the value", () {
-          expect(incrementedValue, value + 1);
-        });
-      });
-    });
-
-    group("given a negative value", () {
-      setUp(() {
-        value = -1;
-      });
-
-      group("when incrementing the value", () {
-        late Future<int> Function() increment;
+        late int incrementedValue;
+        late int expectedValue;
 
         setUp(() async {
-          final incrementer = Incrementer(calculator: Calculator());
-          increment = () => incrementer.increment(value);
+          expectedValue = 11;
+          incrementedValue = await incrementer.increment();
         });
 
-        test("throws an ArgumentError", () {
-          expect(increment, throwsArgumentError);
+        test("returns the incremented value", () {
+          expect(incrementedValue, expectedValue);
         });
       });
     });

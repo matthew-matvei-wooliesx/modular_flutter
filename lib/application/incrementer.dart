@@ -1,19 +1,20 @@
-import 'package:domain/calculator.dart';
+import 'package:domain/changeable_value_repository.dart';
 import 'package:flutter/foundation.dart';
 
 class Incrementer {
-  final Calculator _calculator;
+  final ChangeableValueRepository _repository;
 
   @visibleForTesting
-  Incrementer({required Calculator calculator}) : _calculator = calculator;
+  Incrementer({required ChangeableValueRepository repository})
+      : _repository = repository;
 
-  Incrementer.poorMansProvider() : this(calculator: Calculator());
+  // Incrementer.poorMansProvider() : this(calculator: Calculator());
 
-  Future<int> increment(int currentValue) {
-    if (currentValue < 0) {
-      throw ArgumentError.value(currentValue, "Value must be non-negative");
-    }
+  Future<int?> getCurrent() {
+    throw UnimplementedError();
+  }
 
-    return Future.value(_calculator.addOne(currentValue));
+  Future<int> increment() {
+    throw UnimplementedError();
   }
 }
