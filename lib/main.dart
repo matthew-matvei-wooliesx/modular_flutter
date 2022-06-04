@@ -1,9 +1,6 @@
-import 'package:data/data.dart';
 import 'package:flutter/material.dart';
-import 'package:modular_flutter/application/incrementer.dart';
 
 void main() async {
-  await initialiseDataLayer();
   runApp(const MyApp());
 }
 
@@ -33,28 +30,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int? _counter;
-  final Incrementer _incrementer;
-
-  _MyHomePageState() : _incrementer = Incrementer.poorMansProvider();
-
-  @override
-  void initState() {
-    super.initState();
-
-    _incrementer
-        .getCurrent()
-        .then((value) => value ?? 0)
-        .then((initialValue) => setState(() {
-              _counter = initialValue;
-            }));
-  }
-
-  void _incrementCounter() async {
-    final incrementedValue = await _incrementer.increment();
-    setState(() {
-      _counter = incrementedValue;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
