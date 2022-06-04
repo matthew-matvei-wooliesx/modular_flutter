@@ -6,7 +6,7 @@ import 'package:modular_flutter/providers.dart';
 class DriverBreaksView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final driverBreakState = ref.read(_driverBreakStateNotifierProvider);
+    final driverBreakState = ref.watch(_driverBreakStateNotifierProvider);
 
     return Column(
       children: [
