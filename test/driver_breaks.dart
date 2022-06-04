@@ -38,6 +38,7 @@ extension _DriverBreaksExtensions on WidgetTester {
         : "Start 30min break";
 
     await tap(find.widgetWithText(TextButton, buttonText));
+    await pumpAndSettle();
   }
 }
 
