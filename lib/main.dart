@@ -1,8 +1,10 @@
-import 'package:driver_breaks/driver_breaks_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'driver_breaks_view.dart';
 
 void main() async {
-  runApp(const App());
+  runApp(ProviderScope(child: const App()));
 }
 
 class App extends StatelessWidget {
@@ -30,8 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int? _counter;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
