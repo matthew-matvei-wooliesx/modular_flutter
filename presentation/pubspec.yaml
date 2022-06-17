@@ -17,6 +17,9 @@ dependencies:
   application:
     path: ../application
 
+  data:
+    path: ../data
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

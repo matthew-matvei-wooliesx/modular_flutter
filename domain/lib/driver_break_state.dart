@@ -1,14 +1,8 @@
 class DriverBreakState {
-  final DriverBreakStateRepository _repository;
   BreakDuration? _currentDuration;
-
-  DriverBreakState({required DriverBreakStateRepository repository})
-      : _repository = repository;
 
   void setDuration(BreakDuration duration) {
     _currentDuration = duration;
-
-    _repository.store(duration);
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:application/driver_break_use_case.dart';
 import 'package:domain/driver_break_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,19 +30,25 @@ class DriverBreaksView extends ConsumerWidget {
 
 final _driverBreakStateNotifierProvider = ChangeNotifierProvider(
   (ref) => _DriverBreakStateNotifier(
-    state: ref.read(driverBreakStateProvider),
+    useCase: ref.read(driverBreakUseCaseProvider),
   ),
 );
 
 class _DriverBreakStateNotifier extends ChangeNotifier {
-  final DriverBreakState _state;
+  final DriverBreakUseCase _useCase;
+  DriverBreakState _driverBreakState = DriverBreakState();
 
-  _DriverBreakStateNotifier({required DriverBreakState state}) : _state = state;
+  _DriverBreakStateNotifier({required DriverBreakUseCase useCase})
+      : _useCase = useCase;
 
-  void setTo(BreakDuration duration) {
-    _state.setDuration(duration);
+  void setTo(BreakDuration duration) async {
+    _driverBreakState = await _useCase.setDriverBreakDuration(
+      _driverBreakState,
+      duration,
+    );
+
     notifyListeners();
   }
 
-  String display() => _state.toString();
+  String display() => _driverBreakState.toString();
 }
