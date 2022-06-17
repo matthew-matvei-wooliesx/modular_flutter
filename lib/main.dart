@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'driver_breaks_view.dart';
+import 'package:presentation/driver_breaks_view.dart';
 
 void main() async {
   runApp(ProviderScope(child: const App()));
