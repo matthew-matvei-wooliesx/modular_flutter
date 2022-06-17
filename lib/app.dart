@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'driver_breaks_view.dart';
+import 'package:modular_flutter/driver_breaks_view.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

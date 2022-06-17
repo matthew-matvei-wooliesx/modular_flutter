@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:presentation/app.dart';
+import 'package:modular_flutter/app.dart';
 
 void main() {
   testWidgets("A 15 minute Driver Break can be started", (tester) async {

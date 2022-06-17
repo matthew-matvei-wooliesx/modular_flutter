@@ -35,8 +35,6 @@ dependencies:
     path: ./data
   domain:
     path: ./domain
-  presentation:
-    path: ./presentation
 
 dev_dependencies:
   flutter_test:

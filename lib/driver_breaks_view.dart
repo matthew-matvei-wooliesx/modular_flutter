@@ -2,7 +2,7 @@ import 'package:domain/driver_break_state.dart';
 import 'package:domain/driver_break_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:presentation/providers.dart';
+import 'package:modular_flutter/providers.dart';
 
 class DriverBreaksView extends ConsumerWidget {
   @override
