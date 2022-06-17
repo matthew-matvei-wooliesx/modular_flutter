@@ -37,6 +37,8 @@ dependencies:
     path: ./domain
   presentation:
     path: ./presentation
+  application:
+    path: ./application
 
 dev_dependencies:
   flutter_test:
