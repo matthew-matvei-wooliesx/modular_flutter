@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class DriverBreaksView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final driverBreakState = ref.watch(_driverBreakStateNotifierProvider);
+    final driverBreakState = ref.watch(driverBreakStateNotifierProvider);
 
     return Column(
       children: [
@@ -25,23 +25,4 @@ class DriverBreaksView extends ConsumerWidget {
       ],
     );
   }
-}
-
-final _driverBreakStateNotifierProvider = ChangeNotifierProvider(
-  (ref) => _DriverBreakStateNotifier(
-    state: ref.read(driverBreakStateProvider),
-  ),
-);
-
-class _DriverBreakStateNotifier extends ChangeNotifier {
-  final DriverBreakState _state;
-
-  _DriverBreakStateNotifier({required DriverBreakState state}) : _state = state;
-
-  void setTo(BreakDuration duration) {
-    _state.setDuration(duration);
-    notifyListeners();
-  }
-
-  String display() => _state.toString();
 }
