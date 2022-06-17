@@ -1,5 +1,5 @@
-import 'package:application/driver_break_use_case.dart';
 import 'package:domain/driver_break_state.dart';
+import 'package:domain/driver_break_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:presentation/providers.dart';

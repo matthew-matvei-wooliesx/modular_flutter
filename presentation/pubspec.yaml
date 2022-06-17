@@ -14,9 +14,6 @@ dependencies:
 
   flutter_riverpod: ^1.0.3
 
-  application:
-    path: ../application
-
   data:
     path: ../data
 
