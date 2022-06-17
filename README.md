@@ -45,5 +45,3 @@ A Flutter project to PoC modularisation.
 * The lack of an 'application' layer means that objects that the business should care about, like `Route` and `Drop`
     get confused with more implementation-focused objects like `DriverBreaksUseCase` that the business would have no
     concept of. This can muddy rules for core domain concepts
-* The lack of a separate 'presentation' layer means that too much application / domain logic can start to be defined in
-    an implied presentation space
